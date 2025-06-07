@@ -18,7 +18,7 @@ const pool = new Pool({
 });
 
 // Ensure tables
-pool.query(\`
+pool.query(`
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255),
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS orders (
   total NUMERIC,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-\`);
+`);
 
 app.post("/api/signup", async (req, res) => {
   const { username, email, password } = req.body;
@@ -102,7 +102,6 @@ app.post("/api/logout", (req, res) => {
   res.status(200).json({ message: "Logout handled client-side" });
 });
 
-// ✅ Added home route
 app.get("/", (req, res) => {
   res.json({ message: "Petio API is live!" });
 });
